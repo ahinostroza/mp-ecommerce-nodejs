@@ -10,7 +10,8 @@ router.post('/checkout/', async function(req, res) {
     console.log(req.body);
     let response = await mercadoPagoController.checkout(req.body);
     res.json({
-        ok: true
+        ok: true,
+        response
     });
 });
 
