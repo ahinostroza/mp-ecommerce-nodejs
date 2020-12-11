@@ -12,9 +12,9 @@ checkout = async(body) => {
             id: '1234',
             title: body.title,
             currency_id: 'PEN',
-            picture_url: `https://ahinostroza-mp-commerce-nodejs.herokuapp.com${img}`,
+            picture_url: `https://ahinostroza-mp-commerce-nodejs.herokuapp.com${body.img}`,
             description: 'Dispositivo móvil de Tienda e-commerce',
-            category_id: '',
+            category_id: 'mobile',
             quantity: 1,
             unit_price: parseFloat(body.price)
         }],
@@ -24,7 +24,7 @@ checkout = async(body) => {
             email: 'test_user_46542185@testuser.com',
             phone: {
                 area_code: '52',
-                number: '5549737300'
+                number: 5549737300
             },
             identification: {
                 type: 'DNI',
@@ -32,7 +32,7 @@ checkout = async(body) => {
             },
             address: {
                 street_name: 'Insurgentes Sur',
-                street_number: '1602',
+                street_number: 1602,
                 zip_code: '03940'
             }
         },
@@ -53,7 +53,7 @@ checkout = async(body) => {
         },
         notification_url: 'https://hookb.in/mZQkNKVwxNFeqq710noW',
         external_reference: 'tromepop@gmail.com',
-        expires: true,
+        expires: false,
         expiration_date_from: '2020-01-01T12:00:00.000-04:00',
         expiration_date_to: '2021-01-01T12:00:00.000-04:00'
     }
@@ -62,8 +62,8 @@ checkout = async(body) => {
 
     await mercadopago.preferences.create(preference)
         .then(function(response) {
+            console.log(response.body);
             global.init_point = response.body.init_point;
-            console.log(global.init_point);
             url = global.init_point;
         }).catch(function(error) {
             console.log(error);

@@ -28,7 +28,7 @@ app.get('/', function(req, res) {
 
 app.get('/success', function(req, res) {
     console.log(req.query);
-    res.render('success');
+    res.render('success', req.query);
 });
 
 app.get('/failure', function(req, res) {
